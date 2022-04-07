@@ -12,6 +12,9 @@ export default {
     components: {
       Nav,
     },
+    mounted() {
+      
+    }
     
 }
 </script>

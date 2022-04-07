@@ -1,6 +1,6 @@
 <template>
    <div class="content swiper-wrapper">
-    <div class="swiper-wrapper">
+    <div class="swiper-wrapper" >
         
         <div class="swiper-slide">
         <div class="card">
@@ -128,7 +128,6 @@
 
 
         </div>
-        
         
         
         
@@ -139,9 +138,13 @@
 
 <script>
 export default {
+    data(){
+        
+    },
     mounted(){
      require ('@/plugins/Swiper.js') 
     }
+
 }
 </script>
 
