@@ -4,7 +4,6 @@ import './registerServiceWorker'
 import router from './router'
 import store from './store'
 
-import '/node_modules/swiper/swiper.scss'
 
 import '@/assets/styles/style.scss'
 
