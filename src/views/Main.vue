@@ -1,5 +1,4 @@
 <template>
-    <HeaderMain/>
     <Swiper/>
 </template>
 

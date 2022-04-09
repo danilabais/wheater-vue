@@ -1,28 +1,27 @@
 <template>
-    <HeaderMain/>
   <div class="container">
       <input v-on:input="search" placeholder="Начните вводить название места" type="text"> 
       <ul  v-for="item in arrOfLocations" :key="item"><div class="wrapper">
-          <li>{{item.value}}</li><button  v-on:click="addToFavorite(item)">+</button></div><hr>
+          <li>{{item.value}}</li><button  :disabled="isDisabled(item.data.settlement_fias_id)"  v-on:click="addToFavorite(item)">+</button></div><hr>
       </ul>
       <div v-if="this.query && !arrOfLocations.length">Результатов нет</div>
   </div>
 </template>
 
 <script>
-import HeaderMain from '@/components/HeaderMain.vue'
 import axios from 'axios'
 
 export default {
     components: {
-        HeaderMain,
+       
     },
     data(){
         return {
             arrOfLocations:[],
             token:'7b1d99ed6972e5a7c511659eafc3d2b66b4a8031',
             query:'',
-            addedLocations:[]
+            
+            
 
         }
     },
@@ -35,18 +34,41 @@ export default {
                 headers: {
                     "Content-Type": "application/json",
                     "Accept": "application/json",
-                    "Authorization": "Token " + this.token
+                    "Authorization": "Token " + this.token,
                 },
                
             }
-            await axios.get(`https://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/address?query=${this.query}&count=6&language=ru`,options).then(response => this.arrOfLocations=response.data.suggestions)
+            await axios.get(`https://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/address?query=${this.query}&count=6&language=ru&qc_geo=3`,options).then(response => this.arrOfLocations=response.data.suggestions.filter((item)=>item.data.qc_geo>1))
             
         },
         addToFavorite(region) {
-           this.addedLocations=[{lat:region.data.geo_lat,lon:region.data.geo_lon,name:region.value,id:region.data.region_fias_id,isMy:false}]
-           console.log(this.addedLocations)
-        }
+           
+           this.$store.commit('STATE_REGIONS',
+           {
+               lat:region.data.geo_lat,
+               lon:region.data.geo_lon,
+               name:region.value,
+               id:region.data.settlement_fias_id,
+               isMy:false
+            }
+           )
+          console.log(region.data.fias_id)
+          // console.log(this.regions)
+        },
+        isDisabled (id) {
+            return this.getID.includes(id)
+        } 
     },
+    computed: {
+        regions() {
+           return this.$store.getters.regions
+         
+        },
+        getID() {
+            let id = this.regions.map(x=>x.id)  
+            return id
+        }
+    }
 
 }
 </script>
