@@ -8,11 +8,11 @@
           <SearchIcon/>
           <div class="nav__text">Search</div>
         </router-link>
-        <div class="nav__item">
+        <router-link to="book-mark" class="nav__item">
          <BookmarkIcon/>
             
           <div class="nav__text">Mark</div>
-        </div>
+        </router-link>
         <div class="nav__item">
         <AccountIcon/>
 

@@ -1,5 +1,5 @@
 <template>
-  <div >
+  <div>
     <swiper
       class="swiper"
       :watchOverflow="true"
@@ -7,19 +7,21 @@
       :centered-slides="true"
       :space-between="20"
       :grab-cursor="true"
-      :mousewheel="true"
       :slides-per-view="4"
+      :draggable="true"
       :breakpoints="breakpoints"
+      :mousewheel="true"
+     
     >
-      <swiper-slide v-for="item in 4" :key="item">
+      <swiper-slide v-for="(item,key) in arr" :key="key" >
           <div class="card">
-            <img src="@/assets/img/test.png" class="card__title-img" alt="">
+            <img :src="`http://openweathermap.org/img/wn/${item.weather[0].icon}@4x.png`" class="card__title-img" alt="">
             <div class="card__content">
-            <h2 class="card__title">Miami, FF, USA </h2>
+            <h2 class="card__title">{{item.name}}</h2>
             <div class="card__additional">
                 <div class="card__left">
                 <div class="card__temp">
-                    24 <span>&deg; C</span>
+                    {{Math.round(item.main.temp)}} <span>&deg; C</span>
                 </div>
                 <div class="card__day">
                     Sunday, 11 am
@@ -27,7 +29,7 @@
                 </div>
                 <div class="card__right">
                 <div class="card__chips card__chips-pink">Strong Winds</div>
-                <div class="card__chips card__chips-blue">Cloudly</div>
+                <div class="card__chips card__chips-blue">{{item.weather[0].description}}</div>
                 
                 </div>
             </div>
@@ -39,7 +41,7 @@
                 <img src="@/assets/img/rain.svg" alt=""><div class="additional__text"><span>Precipitation</span><span>6%</span></div>
                 </div>
                 <div class="additional__item">
-                <img src="@/assets/img/humidity.svg" alt=""><div class="additional__text"><span>Humidity</span><span>90%</span></div>
+                <img src="@/assets/img/humidity.svg" alt=""><div class="additional__text"><span>Humidity</span><span>{{item.main.humidity}}%</span></div>
                 </div>
                 <div class="additional__item">
                 <img src="@/assets/img/wind.svg" alt=""><div class="additional__text"><span>Wind</span><span>19 km/h</span></div>
@@ -54,11 +56,12 @@
 
 <script>
 import SwiperMixin from "./SwiperMixin.js";
-
 export default {
   mixins: [SwiperMixin],
+  props: ['arrOfWeather'],
   data(){
       return {
+        
           breakpoints: {
        0: {
         slidesPerView: 1.2,
@@ -74,7 +77,15 @@ export default {
       },
     }
       }
+  },
+  computed: {
+    arr(){
+      return this.$store.getters.weather
+    }
   }
+ 
+ 
+  
 }
 </script>
 

@@ -11,6 +11,7 @@
 import Nav from '@/components/Nav.vue'
 import HeaderMain from '@/components/HeaderMain.vue'
 
+
 export default {
     components: {
       Nav,HeaderMain,
