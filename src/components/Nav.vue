@@ -4,11 +4,11 @@
           <HomeIcon/>
           <div class="nav__text">Home</div>
         </router-link>
-        <router-link to="/search" class="nav__item">
+        <router-link  to="/search" class="nav__item ">
           <SearchIcon/>
           <div class="nav__text">Search</div>
         </router-link>
-        <router-link to="book-mark" class="nav__item">
+        <!-- <router-link to="book-mark" class="nav__item">
          <BookmarkIcon/>
             
           <div class="nav__text">Mark</div>
@@ -17,7 +17,7 @@
         <AccountIcon/>
 
             <div class="nav__text">Settings</div>
-            </div>
+            </div> -->
       </nav>
 </template>
 
@@ -36,5 +36,7 @@ export default {
 </script>
 
 <style>
-
+.display {
+  display: none;
+}
 </style>

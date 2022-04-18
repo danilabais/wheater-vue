@@ -1,5 +1,9 @@
 <template>
   <div>
+    <div class="region" v-if="!arr.length">
+      Вы пока не добавили ни одого региона<br>
+      <router-link class="link" to="/search">Добавить</router-link>
+    </div>
     <swiper
       class="swiper"
       :watchOverflow="true"
@@ -11,7 +15,7 @@
       :draggable="true"
       :breakpoints="breakpoints"
       :mousewheel="true"
-     
+      
     >
       <swiper-slide v-for="(item,key) in arr" :key="key" >
           <div class="card">
@@ -51,6 +55,7 @@
         </div>
        </swiper-slide>      
     </swiper>
+    
   </div>
 </template>
 
@@ -94,5 +99,18 @@ export default {
     width: 100vw;
     padding-top: 40px;
 }
+.region {
+  color: #fff;
+  text-align: center;
+  font-size: 24rem;
+  margin-bottom: auto;
+}
+.link {
+  color: #fff;
+  text-decoration: underline;
+  
+}
+
+
 
 </style>
