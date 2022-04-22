@@ -1,30 +1,15 @@
 <template>
-    <Swiper  :arrOfWeather="arrOfWeather"/>
+  <Swiper :arrOfWeather="arrOfWeather" />
 </template>
 
 <script>
-import Swiper from '@/components/Swiper.vue'
+import Swiper from "@/components/Swiper.vue";
 
 export default {
-    components: {
-        Swiper,
-    },
-    data() {
-        return {
-           
-
-        }
-        
-    },
-    
-     
-    
-    
-    
-   
-}
+  components: {
+    Swiper,
+  },
+};
 </script>
 
-<style>
-
-</style>
+<style></style>

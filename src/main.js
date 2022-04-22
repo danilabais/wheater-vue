@@ -1,12 +1,9 @@
-import { createApp, VueElement } from 'vue'
-import App from './App.vue'
-import './registerServiceWorker'
-import router from './router'
-import store from './store'
+import { createApp, VueElement } from "vue";
+import App from "./App.vue";
+import "./registerServiceWorker";
+import router from "./router";
+import store from "./store";
 
+import "@/assets/styles/style.scss";
 
-import '@/assets/styles/style.scss'
-
-
-
-createApp(App).use(store).use(router).mount('#app')
+createApp(App).use(store).use(router).mount("#app");
